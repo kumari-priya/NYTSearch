@@ -1,12 +1,15 @@
 .jumbotron {
 	background: transparent;
 }
+.container {
+
+}
 #title {
 	text-align: center;
 	background-color: lightblue;
 	color: border-left:;
 	padding: 25px 0px;
 }
-.container {
-
+#records {
+	
 }
