@@ -19,45 +19,52 @@
 	<div class="jumbotron">
 		<h1 id="title">NEW YORK TIMES SEARCH</h1>
 	</div>
+
 	<div class="container parameters">
+
 		<h2 id="box"><span class="glyphicon glyphicon-search"></span> Search Parameters</h2>
-		<div class="form-group">
+
+		<form class="form-group">
 			Search Terms
+
 			<input type="text" class="form-control" id="search-terms">
-		</div>
-		<br>
-		<div class="form-group">
+
 			Number of Records to Retrieve
 			<select class="form-control" id="records">
-		    	<option>1</option>
-		    	<option>2</option>
-		    	<option>5</option>
-		     	<option>10</option>
+		    	<option value='1'>1</option>
+		    	<option value='2'>2</option>
+		    	<option value='5'>5</option>
+		     	<option value='10'>10</option>
+	
     		</select>
-		</div>
-		<br>
-		<div class="form-group" id="start">
-			Start Year (Optional)
-			<input type="text" class="form-control" id="search-terms">
-		</div>
-		<br>
-		<div class="form-group" id="end">
-			End Year (Optional)
-			<input type="text" class="form-control" id="search-terms">
-		</div>
-		<button id="search">
-			<span class="glyphicon glyphicon-search"></span> Search
-		</button>
-		<button id="clear">
-			<span class="glyphicon glyphicon-sunglasses"></span> Clear
-		</button>
+    		
+				Start Year (Optional)
+				<input type="text" class="form-control" id="start">
+	
+				End Year (Optional)
+				<input type="text" class="form-control" id="end">
+		
+				<button id="search" >
+					<span class="glyphicon glyphicon-search"></span> Search
+				</button>
+				<button id="clear">
+					<span class="glyphicon glyphicon-sunglasses"></span> Clear
+				</button>
+		</form>
+
+
 	</div>
+
 	<div class="container articles">
 		<h2 id="box"><span class="glyphicon glyphicon-list-alt"></span> Top Articles</h2>
+		<div id='articleList'>
+			
+		</div>
 
 	</div>
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript"></script>
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ -->	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="nytime.js"></script>
 </body>
 </html>

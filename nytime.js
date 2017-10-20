@@ -1,56 +1,64 @@
-	var apiKey = '84e5b9f211354d4d96b8466579a50b44'
-	var searchTerm = 'cat';
-	var recordCount;
-	var startYear =  '20160101';
-	var endYear = '20170401';
+	
+'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=84e5b9f211354d4d96b8466579a50b44&q=cat&begin_date=20160101&end_date=20170101'
 
 
-	var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+	$('#search').on("click", function(event) {
+		event.preventDefault();
+		var apiKey = '84e5b9f211354d4d96b8466579a50b44'
+		var searchTerm = $('#search-terms').val().trim();
+		var recordCount = $('#records').val().trim();
+		var startYear =  $('#start').val().trim()+'0101'
+		var endYear = $('#end').val().trim()+'0101'
+		var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+		var queryString = '?api-key='+apiKey+'&q='+searchTerm+'&begin_date='+startYear+'&end_date='+endYear;
 
+		console.log(searchTerm);
+		console.log(recordCount);
 
+		console.log(url+queryString);
 
-	var queryString = '?api-key='+apiKey+'&q='+searchTerm+'&begin_date='+startYear+'&end_date='+endYear
+		$.ajax({
+		  url: url+queryString,
+		  method: 'GET',
+		}).done(function(result) {
+			
 
-
-	$.ajax({
-	  url: url+queryString,
-	  method: 'GET',
-	}).done(function(result) {
-	  console.log(result);
-	}).fail(function(err) {
-	  throw err;
-	});
-
-	var headline = response.docs.headline.main;
-	var articleLink = response.docs.web_url;
-	var timeStamp = response.docs.pub_date;
-	var section = response.docs.section_name;
-	var author = response.docs.byline.original;
-
-	for (var i = 0; i < recordCount.length; i++) {
+			for (var i = 0; i < recordCount; i++) {
 		
-		var articleDiv = $('<div>');
+				var headline = result.response.docs[i].headline.main;
+				var articleLink = result.response.docs[i].web_url;
+				var timeStamp = result.response.docs[i].pub_date;
+				var section = result.response.docs[i].section_name;
+				var author = result.response.docs[i].byline.original;
+				
+				var articleDiv = $('<div>');
 
-		var headlineDiv = $('<h1>');
-		var authorDiv = $('<h2>');
-		var countDiv = $('<div>');
-		var sectionDiv = $('<div>');
-		var linkDiv = $('<div>');
-		var timeStampDiv = $('<div>');
+				var headlineDiv = $('<h1>');
+				var authorDiv = $('<h2>');
+				var countDiv = $('<div>');
+				var sectionDiv = $('<div>');
+				var linkDiv = $('<div>');
+				var timeStampDiv = $('<div>');
 
-		headlineDiv.text(headline)
-		authorDiv.text(author)
-		countDiv.text(i++)
-		sectionDiv.text(section)
-		linkDiv.text(articleLink)
-		timeStampDiv.text(timeStamp)
+				headlineDiv.text(headline);
+				authorDiv.text(author);
+				countDiv.text(i);
+				sectionDiv.text(section);
+				linkDiv.text(articleLink);
+				timeStampDiv.text(timeStamp);
 
-		articleDiv.append(headlineDiv);
-		articleDiv.append(authorDiv);
-		articleDiv.append(sectionDiv);
-		articleDiv.append(timeStampDiv);
-		articleDiv.append(linkDiv);
+				articleDiv.append(headlineDiv);
+				articleDiv.append(authorDiv);
+				articleDiv.append(sectionDiv);
+				articleDiv.append(timeStampDiv);
+				articleDiv.append(linkDiv);
+				console.log(articleDiv);
+				$('#articleList').append(articleDiv);
+				console.log(i);
 
-		$('.container articles').append(articleDiv);
+			}
+		}).fail(function(err) {
+		  throw err;
+		});
 
-	}
+	});
